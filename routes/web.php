@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use \App\Http\Controllers\BirthDateController;
 
 /*
 |--------------------------------------------------------------------------
@@ -12,11 +13,14 @@ use Illuminate\Support\Facades\Route;
 | contains the "web" middleware group. Now create something great!
 |
 */
+Route::get('/create', [BirthDateController::class, 'createNew']);
 
-Route::get('/', function () {
-    return view('welcome');
-});
+Route::get('/', [BirthDateController::class, 'getAll']);
 
-Route::get('/form', function () {
-    return view('form');
-});
+Route::get('/update/{id}', [BirthDateController::class, 'getDate']);
+
+Route::get('/delete/{id}', [BirthDateController::class, 'delete']);
+
+Route::post('/update/{id}', [BirthDateController::class, 'update']);
+
+Route::post('/create', [BirthDateController::class, 'create']);
